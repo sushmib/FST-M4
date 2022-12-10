@@ -1,0 +1,114 @@
+root@6b1e9c3fd3d0:/# vim episodeV_dialouges.txt
+root@6b1e9c3fd3d0:/# hive
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/local/apache-hive-3.1.2-bin/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/local/hadoop-3.3.1/share/hadoop/common/lib/slf4j-log4j12-1.7.30.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+Hive Session ID = b7c86265-4e3f-4f50-b268-fed6498e5598
+
+Logging initialized using configuration in jar:file:/usr/local/apache-hive-3.1.2-bin/lib/hive-common-3.1.2.jar!/hive-log4j2.properties Async: true
+Hive Session ID = 9e791ab5-2a3e-4e0e-aa09-f27e6eb3a32c
+Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+hive> CREATE TABLE episodeV (name STRING, line STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' TBLPROPERTIES ("skip.header.line.count"="2");
+OK
+Time taken: 7.289 seconds
+hive> LOAD DATA LOCAL INPATH '/episodeV_dialouges.txt' INTO TABLE episodeV;
+Loading data to table default.episodev
+OK
+Time taken: 0.788 seconds
+hive> SELECT name, COUNT(name) AS no_of_lines from episodeV GROUP BY name ORDER BY no_of_lines DESC;
+Query ID = root_20211208085710_c2d93e00-e404-4bb2-8956-d9251cbea261
+Total jobs = 2
+Launching Job 1 out of 2
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1638948376583_0008, Tracking URL = http://6b1e9c3fd3d0:8088/proxy/application_1638948376583_0008/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1638948376583_0008
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2022-12-29 08:58:19,937 Stage-1 map = 0%,  reduce = 0%
+2022-11-29 08:59:20,625 Stage-1 map = 0%,  reduce = 0%
+2022-11-29 09:00:27,282 Stage-1 map = 0%,  reduce = 0%
+2022-11-29 09:01:53,060 Stage-1 map = 0%,  reduce = 0%
+2022-11-29 09:06:53,587 Stage-1 map = 0%,  reduce = 0%
+2022-11-29 09:07:53,173 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 387.59 sec
+2022-11-29 09:08:10,055 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 406.99 sec
+MapReduce Total cumulative CPU time: 6 minutes 46 seconds 990 msec
+Ended Job = job_1638948376583_0008
+Launching Job 2 out of 2
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1638948376583_0009, Tracking URL = http://6b1e9c3fd3d0:8088/proxy/application_1638948376583_0009/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1638948376583_0009
+Hadoop job information for Stage-2: number of mappers: 1; number of reducers: 1
+2022-11-29 09:08:34,683 Stage-2 map = 0%,  reduce = 0%
+2022-11-29 09:08:44,297 Stage-2 map = 100%,  reduce = 0%, Cumulative CPU 5.85 sec
+2022-11-29 09:08:52,731 Stage-2 map = 100%,  reduce = 100%, Cumulative CPU 12.15 sec
+MapReduce Total cumulative CPU time: 12 seconds 150 msec
+Ended Job = job_1638948376583_0009
+MapReduce Jobs Launched:
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 406.99 sec   HDFS Read: 61929 HDFS Write: 1529 SUCCESS
+Stage-Stage-2: Map: 1  Reduce: 1   Cumulative CPU: 12.15 sec   HDFS Read: 9035 HDFS Write: 1333 SUCCESS
+Total MapReduce CPU Time Spent: 6 minutes 59 seconds 140 msec
+OK
+HAN     181
+LUKE    127
+LEIA    114
+THREEPIO        92
+LANDO   61
+VADER   56
+YODA    36
+PIETT   23
+CREATURE        21
+RIEEKAN 13
+BEN     11
+WEDGE   8
+VEERS   7
+DECK OFFICER    7
+ZEV     6
+OZZEL   5
+NEEDA   5
+EMPEROR 5
+BOBA FETT       4
+JANSON  4
+DACK    4
+BEN'S VOICE     4
+ANNOUNCER       3
+CONTROLLER      3
+TRENCH OFFICER  3
+DERLIN  3
+IMPERIAL OFFICER        2
+MEDICAL DROID   2
+LIEUTENANT      2
+SENIOR CONTROLLER       2
+INTERCOM VOICE  2
+TRACKING OFFICER        2
+COMMUNICATIONS OFFICER  2
+HOBBIE  1
+HEAD CONTROLLER 1
+STRANGE VOICE   1
+FIRST CONTROLLER        1
+SECOND OFFICER  1
+MAN'S VOICE     1
+ASSISTANT OFFICER       1
+OFFICER 1
+SECOND CONTROLLER       1
+PILOT   1
+REBEL FIGHTER   1
+CAPTAIN 1
+PILOTS  1
+REBEL CAPTAIN   1
+WOMAN CONTROLLER        1
+IMPERIAL SOLDIER        1
+SECOND THREEPIO 1
+Time taken: 704.533 seconds, Fetched: 50 row(s)

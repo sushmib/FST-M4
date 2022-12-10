@@ -1,0 +1,77 @@
+root@6b1e9c3fd3d0:/# vim ep4.txt
+root@6b1e9c3fd3d0:/# vim ep5.txt
+root@6b1e9c3fd3d0:/# vim ep6.txt
+root@6b1e9c3fd3d0:/# hdfs dfs -put ./ep4.txt /user/root
+root@6b1e9c3fd3d0:/# hdfs dfs -put ./ep5.txt /user/root
+root@6b1e9c3fd3d0:/# hdfs dfs -put ./ep6.txt /user/root
+root@d0b6e8adf08b:/# vim ep4.pig
+root@d0b6e8adf08b:/# pig ep4.pig
+root@d0b6e8adf08b:/# hdfs dfs -cat /user/root/ep4output/part-r-00000
+LUKE    253
+HAN     152
+THREEPIO        119
+BEN     76
+LEIA    57
+VADER   41
+RED LEADER      36
+BIGGS   34
+TARKIN  28
+OWEN    25
+TROOPER 19
+WEDGE   14
+GOLD LEADER     14
+OFFICER 11
+GOLD FIVE       7
+RED TEN 7
+FIRST TROOPER   6
+BEN'S VOICE     6
+DODONNA 6
+AUNT BERU       6
+DEATH STAR INTERCOM VOICE       6
+JABBA   6
+INTERCOM VOICE  6
+GREEDO  6
+MOTTI   4
+TAGGE   4
+HUMAN   4
+MASSASSI INTERCOM VOICE 3
+SECOND TROOPER  3
+VOICE   3
+COMMANDER       3
+BARTENDER       3
+WILLARD 2
+IMPERIAL OFFICER        2
+CHIEF   2
+CAMIE   2
+GANTRY OFFICER  2
+GOLD TWO        2
+FIXER   2
+RED NINE'S VOICE        1
+WINGMAN'S VOICE 1
+RED TEN'S VOICE 1
+CONTROL OFFICER 1
+SECOND OFFICER  1
+TROOPER VOICE   1
+REBEL OFFICER   1
+FIRST OFFICER   1
+ASTRO-OFFICER   1
+OFFICER CASS    1
+LUKE'S VOICE    1
+MAN'S VOICE     1
+HAN'S VOICE     1
+CHIEF PILOT     1
+TECHNICIAN      1
+RED ELEVEN      1
+BASE VOICE      1
+RED SEVEN       1
+RED LEADER'S VOICE      1
+RED NINE        1
+CREATURE        1
+WINGMAN 1
+PORKINS 1
+CAPTAIN 1
+WOMAN   1
+EEPIO   1
+DEAK    1
+BERU    1
+VOICE OVER DEATH STAR INTERCOM  1

@@ -1,0 +1,128 @@
+root@6b1e9c3fd3d0:/# vim episodeIV_dialouges.txt
+root@6b1e9c3fd3d0:/# hive
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/local/apache-hive-3.1.2-bin/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/local/hadoop-3.3.1/share/hadoop/common/lib/slf4j-log4j12-1.7.30.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+Hive Session ID = c98c700a-8f6d-490a-9201-fa23902bf7b1
+
+Logging initialized using configuration in jar:file:/usr/local/apache-hive-3.1.2-bin/lib/hive-common-3.1.2.jar!/hive-log4j2.properties Async: true
+Hive Session ID = ca0b7d7a-ab4d-4541-a24e-c04a0db5e79b
+Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+hive> CREATE TABLE episodeIV (name STRING, line STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' TBLPROPERTIES ("skip.header.line.count"="2");
+OK
+Time taken: 2.581 seconds
+hive> LOAD DATA LOCAL INPATH '/episodeIV_dialouges.txt' INTO TABLE episodeIV;
+Loading data to table default.episodeiv
+OK
+Time taken: 2.31 seconds
+hive> SELECT name, COUNT(name) AS no_of_lines from episodeIV GROUP BY name ORDER BY no_of_lines;
+Query ID = root_20211208074530_846e020e-8473-4103-95be-1d8be90d957a
+Total jobs = 2
+Launching Job 1 out of 2
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1638948376583_0003, Tracking URL = http://6b1e9c3fd3d0:8088/proxy/application_1638948376583_0003/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1638948376583_0003
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2022-11-29 07:46:16,695 Stage-1 map = 0%,  reduce = 0%
+2022-11-29 07:47:17,296 Stage-1 map = 0%,  reduce = 0%
+2022-11-29 07:47:47,819 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 107.03 sec
+2022-11-29 07:47:57,200 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 112.31 sec
+MapReduce Total cumulative CPU time: 1 minutes 52 seconds 310 msec
+Ended Job = job_1638948376583_0003
+Launching Job 2 out of 2
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1638948376583_0004, Tracking URL = http://6b1e9c3fd3d0:8088/proxy/application_1638948376583_0004/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1638948376583_0004
+Hadoop job information for Stage-2: number of mappers: 1; number of reducers: 1
+2022-11-29 07:48:15,233 Stage-2 map = 0%,  reduce = 0%
+2022-11-29 07:48:25,691 Stage-2 map = 100%,  reduce = 0%, Cumulative CPU 7.61 sec
+2022-11-29 07:48:35,116 Stage-2 map = 100%,  reduce = 100%, Cumulative CPU 13.21 sec
+MapReduce Total cumulative CPU time: 13 seconds 210 msec
+Ended Job = job_1638948376583_0004
+MapReduce Jobs Launched:
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 112.31 sec   HDFS Read: 79742 HDFS Write: 2015 SUCCESS
+Stage-Stage-2: Map: 1  Reduce: 1   Cumulative CPU: 13.21 sec   HDFS Read: 9535 HDFS Write: 1753 SUCCESS
+Total MapReduce CPU Time Spent: 2 minutes 5 seconds 520 msec
+OK
+ASTRO-OFFICER   1
+WINGMAN'S VOICE 1
+WINGMAN 1
+VOICE OVER DEATH STAR INTERCOM  1
+TROOPER VOICE   1
+TECHNICIAN      1
+SECOND OFFICER  1
+RED TEN'S VOICE 1
+RED SEVEN       1
+RED NINE'S VOICE        1
+RED NINE        1
+RED LEADER'S VOICE      1
+RED ELEVEN      1
+REBEL OFFICER   1
+PORKINS 1
+OFFICER CASS    1
+MAN'S VOICE     1
+LUKE'S VOICE    1
+WOMAN   1
+HAN'S VOICE     1
+FIRST OFFICER   1
+DEAK    1
+CREATURE        1
+CONTROL OFFICER 1
+CHIEF PILOT     1
+CAPTAIN 1
+BERU    1
+BASE VOICE      1
+GOLD TWO        2
+WILLARD 2
+GANTRY OFFICER  2
+CHIEF   2
+FIXER   2
+IMPERIAL OFFICER        2
+CAMIE   2
+SECOND TROOPER  3
+BARTENDER       3
+COMMANDER       3
+VOICE   3
+MASSASSI INTERCOM VOICE 3
+TAGGE   4
+MOTTI   4
+HUMAN   4
+DODONNA 6
+GREEDO  6
+INTERCOM VOICE  6
+FIRST TROOPER   6
+JABBA   6
+AUNT BERU       6
+BEN'S VOICE     6
+DEATH STAR INTERCOM VOICE       6
+RED TEN 7
+GOLD FIVE       7
+OFFICER 11
+WEDGE   14
+GOLD LEADER     14
+TROOPER 19
+OWEN    25
+TARKIN  28
+BIGGS   34
+RED LEADER      36
+VADER   41
+LEIA    57
+BEN     76
+THREEPIO        117
+HAN     152
+LUKE    253
+Time taken: 186.477 seconds, Fetched: 67 row(s)

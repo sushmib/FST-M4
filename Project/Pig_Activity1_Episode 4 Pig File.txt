@@ -1,0 +1,8 @@
+--Load input file from HDFS
+inputFile = LOAD 'hdfs:///user/root/ep4.txt' USING PigStorage('\t') AS ( name:chararray,line:chararray);
+-- Group data using the name column
+--onlyDialouges = FILTER inputFile BY name;
+groupByName = GROUP inputFile BY name;
+names = FOREACH groupByName GENERATE $0 as name, COUNT($1) as no_of_lines;
+nameordered = ORDER names BY no_of_lines DESC;
+STORE nameordered INTO 'ep4output' USING PigStorage('\t');
