@@ -1,0 +1,71 @@
+root@6b1e9c3fd3d0:/# hive
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/local/apache-hive-3.1.2-bin/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/local/hadoop-3.3.1/share/hadoop/common/lib/slf4j-log4j12-1.7.30.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+Hive Session ID = 55dc3f19-df3a-4200-a7b7-e7f10222754f
+
+Logging initialized using configuration in jar:file:/usr/local/apache-hive-3.1.2-bin/lib/hive-common-3.1.2.jar!/hive-log4j2.properties Async: true
+Hive Session ID = 379ea420-c163-45a9-afcf-cff51d6ac6f9
+Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+hive> CREATE TABLE files (line STRING);
+OK
+Time taken: 3.936 seconds
+hive> LOAD DATA LOCAL INPATH '/file01.txt' INTO TABLE files;
+Loading data to table default.files
+OK
+Time taken: 1.086 seconds
+hive> CREATE TABLE word_counts AS
+    > SELECT word, count(1) AS count FROM
+    > (SELECT explode(split(line, ' ')) AS word FROM files) w
+    > GROUP BY word
+    > ORDER BY word;
+Query ID = root_20211130043544_c3bf999e-9b0d-48e5-accc-7631c2e665b6
+Total jobs = 2
+Launching Job 1 out of 2
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1638245920951_0003, Tracking URL = http://6b1e9c3fd3d0:8088/proxy/application_1638245920951_0003/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1638245920951_0003
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2022-11-27 04:36:16,719 Stage-1 map = 0%,  reduce = 0%
+2022-11-27 04:37:16,101 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 36.13 sec
+2022-11-27 04:37:27,734 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 42.09 sec
+MapReduce Total cumulative CPU time: 42 seconds 90 msec
+Ended Job = job_1638245920951_0003
+Launching Job 2 out of 2
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1638245920951_0004, Tracking URL = http://6b1e9c3fd3d0:8088/proxy/application_1638245920951_0004/
+Kill Command = /usr/local/hadoop/bin/mapred job  -kill job_1638245920951_0004
+Hadoop job information for Stage-2: number of mappers: 1; number of reducers: 1
+2022-11-27 04:37:54,390 Stage-2 map = 0%,  reduce = 0%
+2022-11-27 04:38:16,170 Stage-2 map = 100%,  reduce = 0%, Cumulative CPU 5.36 sec
+2022-11-27 04:38:43,173 Stage-2 map = 100%,  reduce = 100%, Cumulative CPU 12.51 sec
+MapReduce Total cumulative CPU time: 12 seconds 510 msec
+Ended Job = job_1638245920951_0004
+Moving data to directory hdfs://6b1e9c3fd3d0:9000/user/hive/warehouse/word_counts
+MapReduce Jobs Launched:
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 42.09 sec   HDFS Read: 8171 HDFS Write: 185 SUCCESS
+Stage-Stage-2: Map: 1  Reduce: 1   Cumulative CPU: 12.51 sec   HDFS Read: 7316 HDFS Write: 100 SUCCESS
+Total MapReduce CPU Time Spent: 54 seconds 600 msec
+OK
+hive> SELECT * FROM word_counts;
+OK
+Bye     1
+GoodBye 1
+Hadoop  2
+Hello   2
+World   2
+Time taken: 0.301 seconds, Fetched: 5 row(s)
